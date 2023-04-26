@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Product</title>
+    <style>
+        nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 20px;
+			background-color: #333;
+			color: #fff;
+		}
+
+		nav ul {
+			display: flex;
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		nav ul li {
+			margin-left: 20px;
+		}
+     
+        h1 {
+            margin-top: 50px;
+        }
+    
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: 100%;
+        }
+    
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    
+        form {
+            margin-top: 20px;
+        }
+    
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    
+        input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        button:hover {
+            background-color: #444;
+        }
+    </style>
+    <script>
+          function deleteProduct() {
+    const id = document.getElementById('id').value;
+    fetch(`http://localhost:8080/delete-user/${id}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        confirm('User deleted');
+         window.location.reload();
+    });
+}
+    function loadProducts() {
+        console.log('hi');
+            fetch('http://localhost:8080/users')
+            .then(response => response.json())
+            .then(products => {
+                const table = document.getElementById('productsTable');
+                table.innerHTML = '';
+                var i=0;
+                products.forEach(product => {
+                   
+                    const row = table.insertRow();
+                    const idCell = row.insertCell();
+                    const nameCell = row.insertCell();
+                    const priceCell = row.insertCell();
+                    const descriptionCell = row.insertCell();
+                    const vendorIdCell = row.insertCell();
+                    idCell.innerText = product.rosc_user_id;
+                    nameCell.innerText = product.rosx_username;
+                    priceCell.innerText = product.rosx_password;
+                    descriptionCell.innerText = product.rosx_user_type;
+                    vendorIdCell.innerText = product.rosx_user_created_on;
+                   
+                });
+            });
+        }
+    </script>
+</head>
+<body>
+    <nav>
+		<h1>Product Management System</h1>
+		<ul>
+			<li><a href="/frontend/main-admin-login-crud/main.html">Home</a></li>
+			<li><a href="/frontend/main-admin-login-crud/gd-users.html">Users GET/DELETE</a></li>
+			<li><a href="/frontend/main-admin-login-crud/create-product.html">Add Products</a></li>
+			<li><a href="/frontend/main-admin-login-crud/delete-product.html">Delete Product</a></li>
+			<li><a href="/frontend/main-admin-login-crud/updateproduct.html">Update product</a></li>
+			
+		</ul>
+	</nav>
+    
+    <h2>Delete Users</h2>
+    <form onsubmit="deleteProduct(); return false;">
+    <label>ID: </label>
+    <input type="number" id="id" required><br><br>
+    <button type="submit">Delete</button>
+    </form>
+    <table > 
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Password</th>
+             
+            <th>Vendor Type</th>
+            <th>Created On</th>
+
+            
+        </tr>
+    </table>
+    <table id="productsTable">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Password</th>
+            <th>Type</th>
+            <th>Created On</th>
+             
+        </tr>
+    </table>
+    <script>loadProducts()</script>
+    
+</body>
+</html>
