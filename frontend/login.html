@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+     LOGIN FORM 
+    </title>
+    <link rel="stylesheet" href="reg.css">
+</head>
+<body>
+    <h1>Login Form</h1>
+    <form id="login-form" onsubmit="event.preventDefault();onForm();" autocomplete="off">
+        <div>
+            <label>Full Name:</label><label class="validation-error hide" id="fullNameValidationError"></label>
+            <input type="text" name="fullName" id="fullName" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <div  class="form-action-buttons">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+                
+    <script src="script.js"></script>
+</body>
+
+</html>

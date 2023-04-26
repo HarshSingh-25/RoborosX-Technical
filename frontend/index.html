@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        REGISTRATION FORM
+    </title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Registration Form</h1>
+                <form id="registration-form" onsubmit="event.preventDefault();onFormSubmit();" autocomplete="off" >
+                    <div>
+                        <label>Full Name:</label><label class="validation-error hide" id="fullNameValidationError"></label>
+                        <input type="text" name="fullName" id="fullName" required>
+                    </div>
+                    
+                    <div>
+                        <label for="Password">Password</label>
+                        <input type="password" name="password" id="password" required>
+                    </div>
+                    <div>
+                        <label>Login type: </label>
+                        <select id="mySelect">
+                            <option value="">Choose an option</option>
+                            <option value="ADMIN">ADMIN</option>
+                            <option value="USER">USER</option>
+                            <option value="VENDOR">VENDOR</option>
+                        </select>
+                    </div>
+                    <form action="login.html" method="GET">
+                <div  class="form-action-buttons">
+                        <input type="submit" value="Submit">
+                    </div>
+                    </form>
+                </form>
+    <script src="script.js"></script>
+</body>
+
+</html>
